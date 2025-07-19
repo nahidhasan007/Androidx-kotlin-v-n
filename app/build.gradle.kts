@@ -62,7 +62,7 @@ dependencies {
 
     // Optional: Lifecycle support for coroutines
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx.v291)
+    implementation(libs.androidx.lifecycle.runtime.ktx.v292)
 
     // Optional: Retrofit support for coroutines (if using Retrofit)
     implementation(libs.retrofit2.retrofit)

@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 
 class ServiceGenerator {
 
-    private val catoPayBaseUrl = "https://dev.catopay.com/cp/".toHttpUrlOrNull()
+    private val lockerBaseUrl = "https://dev.locker.com/v1/".toHttpUrlOrNull()
 
     // Authorization token placeholder
     private var authToken: String? = null
@@ -66,11 +66,11 @@ class ServiceGenerator {
         .addConverterFactory(moshiConverterFactory.withNullSerialization())
 
     private val retrofit = retrofitBuilder
-        .baseUrl(catoPayBaseUrl!!)
+        .baseUrl(lockerBaseUrl!!)
         .build()
 
     private val retrofitWithNullValue = retrofitBuilderWithNullValue
-        .baseUrl(catoPayBaseUrl!!)
+        .baseUrl(lockerBaseUrl!!)
         .build()
 
     fun <S> createService(serviceClass: Class<S>): S {
