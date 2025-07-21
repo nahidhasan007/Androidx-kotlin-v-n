@@ -142,7 +142,7 @@ fun test() {
                 ),
                 shape = RoundedCornerShape(20.dp)
             ) {
-                OutlinedTextField(
+                OutlinedTextField(    // use textfield instead of outlined text field. It is efficient in terms of recomposition
                     value = secretCode,
                     onValueChange = { secretCode = it },
                     label = {
