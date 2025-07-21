@@ -25,11 +25,12 @@ class TestClass(navHostController: NavHostController) : BaseChildNavGraph {
 
     @Composable
     fun EmiTestScreenUI() {
-        TestUiScreen()
+        // test()
+        TestUiScreen() // load test() here
     }
 }
 
-@Composable
+@Composable // don't need extra function for this
 fun TestUiScreen() {
     test() // This calls your beautiful lock screen UI
 }
