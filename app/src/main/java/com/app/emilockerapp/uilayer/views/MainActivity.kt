@@ -40,7 +40,7 @@ import com.app.emilockerapp.uilayer.views.dashboard.HomeScreen
 import com.app.emilockerapp.uilayer.views.emi.EmiScreen
 import com.app.emilockerapp.uilayer.views.security.SecurityScreen
 import com.app.emilockerapp.uilayer.views.auth.LoginScreen
-import com.app.emilockerapp.uilayer.views.test.TestClass
+import com.app.emilockerapp.uilayer.views.test.LockedScreen
 
 class MainActivity : AppCompatActivity() {
 
@@ -234,7 +234,7 @@ class MainActivity : AppCompatActivity() {
                     mNavHostController,
                     mainModifier,
                     createListOfScreensInsideComposable(mNavHostController),
-                    TestClass.Routes.emi_Test_Screen,
+                    LoginScreen.Routes.emi_Login_Screen,
                     this
                 )
                 appCoordinator.CatoPayNavHost()
@@ -249,7 +249,7 @@ class MainActivity : AppCompatActivity() {
         val mList = mutableListOf(
             HomeScreen(mNavHostController),
             EmiScreen(mNavHostController),
-            TestClass(mNavHostController),
+            LoginScreen(mNavHostController),
             SecurityScreen(mNavHostController)
         )
         return mList

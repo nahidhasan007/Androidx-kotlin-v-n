@@ -9,7 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import com.app.emilockerapp.coordinator.BaseChildNavGraph
 import com.app.emilockerapp.utils.ComposeBaseExtensions.routeWithArgs
 
-class TestClass(navHostController: NavHostController) : BaseChildNavGraph {
+class LockedScreen(navHostController: NavHostController) : BaseChildNavGraph {
     object Routes {
         const val emi_Test_Screen = "emi_locker/test"
     }
@@ -38,5 +38,5 @@ fun TestUiScreen() {
 @Composable
 fun PreviewEmiTestScreenUI() {
     val mNavHostController = rememberNavController()
-    TestClass(mNavHostController).EmiTestScreenUI()
+    LockedScreen(mNavHostController).EmiTestScreenUI()
 }
