@@ -40,6 +40,7 @@ import com.app.emilockerapp.uilayer.views.dashboard.HomeScreen
 import com.app.emilockerapp.uilayer.views.emi.EmiScreen
 import com.app.emilockerapp.uilayer.views.security.SecurityScreen
 import com.app.emilockerapp.uilayer.views.auth.LoginScreen
+import com.app.emilockerapp.uilayer.views.test.LockedScreen
 
 class MainActivity : AppCompatActivity() {
 
