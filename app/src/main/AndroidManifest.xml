@@ -10,7 +10,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+
     <application
+        android:name=".uilayer.views.test.TestApplication"
         android:allowBackup="true"
         android:directBootAware="true"
         android:icon="@drawable/locker_home_ic"

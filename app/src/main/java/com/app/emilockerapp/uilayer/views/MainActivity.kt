@@ -21,10 +21,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -41,6 +44,8 @@ import com.app.emilockerapp.uilayer.views.emi.EmiScreen
 import com.app.emilockerapp.uilayer.views.security.SecurityScreen
 import com.app.emilockerapp.uilayer.views.auth.LoginScreen
 import com.app.emilockerapp.uilayer.views.test.LockedScreen
+import com.app.emilockerapp.uilayer.views.test.TestClass
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,6 +53,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adminComponent: ComponentName
 
     private lateinit var viewModel: MainViewmodel
+
+    private val testClass : TestClass by inject()
 
     private val adminRequestLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -73,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
 //        startKioskMode(this)
+        val result = testClass.perform()
         viewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
@@ -86,8 +94,8 @@ class MainActivity : AppCompatActivity() {
 
 
         setContent {
-
-            MainView()
+            WelcomeScreen(result)
+//            MainView()
         }
 
     }
@@ -218,6 +226,11 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Toast.makeText(this, "Emergency call failed", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    @Composable
+    fun WelcomeScreen(content : String){
+        Text(modifier = Modifier.fillMaxWidth(), textAlign = TextAlign.Center, text = content)
     }
 
     @Composable

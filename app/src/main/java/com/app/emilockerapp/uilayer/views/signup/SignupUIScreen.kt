@@ -42,10 +42,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.app.emilockerapp.composecomponents.ModernActionButton
-import com.app.emilockerapp.composecomponents.ModernTextField
-import com.app.emilockerapp.composecomponents.animations.AnimatedGradientBackground
-import com.app.emilockerapp.composecomponents.animations.FloatingParticles
 
 @Composable
 fun SignUpUiScreen() {
@@ -82,10 +78,10 @@ fun SignUpUiScreen() {
         modifier = Modifier.fillMaxSize()
     ) {
         // Animated gradient background
-        AnimatedGradientBackground(animatedOffset)
-
-        // Floating particles
-        FloatingParticles(animatedOffset)
+//        AnimatedGradientBackground(animatedOffset)
+//
+//        // Floating particles
+//        FloatingParticles(animatedOffset)
 
 
         // Login form card
@@ -109,63 +105,18 @@ fun SignUpUiScreen() {
                     modifier = Modifier.padding(24.dp)
                 )
                 // Username field
-                ModernTextField(
-                    label = "Username",
-                    value = username,
-                    onValueChange = { username = it },
-                    leadingIcon = Icons.Default.Person,
-                    keyboardType = KeyboardType.Text
-                )
 
-                ModernTextField(
-                    label = "Email",
-                    value = email,
-                    onValueChange = { email = it },
-                    leadingIcon = Icons.Default.Person,
-                    keyboardType = KeyboardType.Text
-                )
-
-                ModernTextField(
-                    label = "Phone Number",
-                    value = phoneNumber,
-                    onValueChange = { phoneNumber = it },
-                    leadingIcon = Icons.Default.Person,
-                    keyboardType = KeyboardType.Text
-                )
-
-                ModernTextField(
-                    label = "User Role",
-                    value = userRole,
-                    onValueChange = { userRole = it },
-                    leadingIcon = Icons.Default.Person,
-                    keyboardType = KeyboardType.Text
-                )
-
-                // Password field
-                ModernTextField(
-                    label = "Password",
-                    value = password,
-                    onValueChange = { password = it },
-                    leadingIcon = Icons.Default.Lock,
-                    keyboardType = KeyboardType.Password,
-                    visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                    trailingIcon = {
-                        IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                            Icon(
-                                imageVector = if (passwordVisible) Icons.Filled.Visibility else Icons.Default.VisibilityOff,
-                                contentDescription = if (passwordVisible) "Hide password" else "Show password",
-                                tint = Color.White.copy(alpha = 0.7f)
-                            )
-                        }
-                    }
-                )
 
                 Spacer(modifier = Modifier.height(32.dp))
+            }
+        }
+    }
+}
 
-                // Login button
-                ModernActionButton(
-                    buttonText = "Sign Up",
-                    onClick = { /* Handle sign up */ },
+// Login button
+
+/* Handle sign up *//*
+ },
                     modifier = Modifier.fillMaxWidth()
                 )
 
@@ -189,11 +140,13 @@ fun SignUpUiScreen() {
                         color = Color.White,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.clickable { /* Handle sign in */ }
+                        modifier = Modifier.clickable { */
+/* Handle sign in *//*
+ }
                     )
                 }
             }
 
         }
     }
-}
+}*/

@@ -76,8 +76,8 @@ dependencies {
 
 // Retrofit with Moshi converter
     implementation(libs.converter.moshi)
-    implementation (libs.okhttp)
-    implementation (libs.logging.interceptor)
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 
 
 
@@ -102,4 +102,6 @@ dependencies {
     implementation(libs.android.material)
     implementation(libs.androidx.material.icons.extended)
 
+    implementation(libs.koin.core)
+    implementation(libs.insert.koin.koin.android)
 }
