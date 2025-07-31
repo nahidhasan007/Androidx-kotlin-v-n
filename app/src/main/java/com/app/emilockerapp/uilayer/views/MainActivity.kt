@@ -43,7 +43,6 @@ import com.app.emilockerapp.uilayer.views.dashboard.HomeScreen
 import com.app.emilockerapp.uilayer.views.emi.EmiScreen
 import com.app.emilockerapp.uilayer.views.security.SecurityScreen
 import com.app.emilockerapp.uilayer.views.auth.LoginScreen
-import com.app.emilockerapp.uilayer.views.test.LockedScreen
 import com.app.emilockerapp.uilayer.views.test.TestClass
 import org.koin.android.ext.android.inject
 
@@ -71,6 +70,8 @@ class MainActivity : AppCompatActivity() {
     private val appCoordinator get() = _appCoordinator!!
     private var bottomPadding = 0.dp
 
+    private val lockDevice = true
+
     companion object {
         private const val CHANNEL_ID = "ForegroundServiceChannel"
         const val POST_NOTIFICATION_PERMISSION_REQUEST_CODE = 1001
@@ -97,6 +98,13 @@ class MainActivity : AppCompatActivity() {
             WelcomeScreen(result)
 //            MainView()
         }
+        if (lockDevice) {
+            Toast.makeText(this, "Locking device...", Toast.LENGTH_SHORT).show()
+            lockDevice()
+        } else {
+            Toast.makeText(this, "Unlocking device...", Toast.LENGTH_SHORT).show()
+            unlockDevice()
+        }
 
     }
 
@@ -104,6 +112,37 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
 //        startKioskMode(this@MainActivity)
 
+    }
+
+    fun runRootCommand(command: String): String {
+        return try {
+            val process = Runtime.getRuntime().exec(arrayOf("su", "-c", command))
+            val output = process.inputStream.bufferedReader().readText()
+            process.waitFor()
+            output
+        } catch (e: Exception) {
+            e.printStackTrace()
+            "Error"
+        }
+    }
+
+    fun lockDevice() {
+        // Kill system UI (removes status bar, nav bar)
+        runRootCommand("pkill com.android.systemui")
+
+        // Optional: Disable settings app
+        runRootCommand("pm disable-user --user 0 com.android.settings")
+
+        // Optional: Launch kiosk app again
+        runRootCommand("am start -n com.app.emilockerapp/.MainActivity")
+    }
+
+    fun unlockDevice() {
+        // Restart system UI
+        runRootCommand("am startservice -n com.android.systemui/.SystemUIService")
+
+        // Enable settings again
+        runRootCommand("pm enable com.android.settings")
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -250,7 +289,7 @@ class MainActivity : AppCompatActivity() {
                     LoginScreen.Routes.emi_Login_Screen,
                     this
                 )
-                appCoordinator.CatoPayNavHost()
+                appCoordinator.EmiLockerNavHost()
             }
         }
     }
@@ -281,7 +320,7 @@ class EmiLockerNavCoordinator(
 ) {
 
     @Composable
-    fun CatoPayNavHost() {
+    fun EmiLockerNavHost() {
         BaseNavHost()
     }
 }
